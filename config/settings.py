@@ -98,9 +98,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'la_boheme',
-        'USER': 'postgres',
-        'PASSWORD': '1620'
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD')
     }
 }
 
@@ -176,4 +176,4 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_TIMEZONE = 'Europe/Moscow'
 
-TELEGRAM_BOT_API = '6120925970:AAFyerVWkcdqZgfCLWc1PqfygnSfbLEuuqA'
+TELEGRAM_BOT_API = os.getenv('TELEGRAM_BOT_API')
