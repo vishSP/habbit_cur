@@ -4,7 +4,6 @@ import telebot
 from celery import shared_task
 from django.conf import settings
 
-
 from habit_app.models import Habit
 
 

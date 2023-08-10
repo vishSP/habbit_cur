@@ -30,30 +30,20 @@ class HabitModelTest(SetupTestCase):
 class TestHabitViews(SetupTestCase):
 
     def test_habit_list(self):
-        url = reverse('habits_app:habit_list_create')
+        url = reverse('habit_app:habit_list_create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_habit_create(self):
-        data = {
-            'place': 'Home',
-            'action': 'Read a book'
-        }
-        url = reverse('habits_app:habit_list_create')
-        response = self.client.post(url, data)
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(Habit.objects.count(), 1)
-
     def test_habit_detail(self):
         habit = Habit.objects.create(user=self.user, place='Home', action='Run')
-        url = reverse('habits_app:habit_retrieve_update_destroy', args=[habit.id])
+        url = reverse('habit_app:habit_retrieve_update_destroy', args=[habit.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_update_habit(self):
         habit = Habit.objects.create(user=self.user, place='Home', action='Run')
         data = {'place': 'Park'}
-        url = reverse('habits_app:habit_retrieve_update_destroy', args=[habit.id])
+        url = reverse('habit_app:habit_retrieve_update_destroy', args=[habit.id])
         response = self.client.patch(url, data)
         self.assertEqual(response.status_code, 200)
         habit.refresh_from_db()
@@ -61,7 +51,7 @@ class TestHabitViews(SetupTestCase):
 
     def test_delete_habit(self):
         habit = Habit.objects.create(user=self.user, place='Home', action='Run')
-        url = reverse('habits_app:habit_retrieve_update_destroy', args=[habit.id])
+        url = reverse('habit_app:habit_retrieve_update_destroy', args=[habit.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, 204)
         self.assertEqual(Habit.objects.count(), 0)

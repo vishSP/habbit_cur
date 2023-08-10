@@ -23,7 +23,7 @@ class HabitSerializer(serializers.ModelSerializer):
             if data.get('execution_time') > datetime.time(hour=0, minute=2, second=0):
                 raise serializers.ValidationError("Время выполнения не может превышать 120 секунд")
 
-        if data.get('linked_habit') and not data.get('linked_habit').is_pleasurable:
+        if data.get('linked_habit') and not data.get('linked_habit').is_good:
             raise serializers.ValidationError("В связанные привычки можно добавлять только с признаком приятной")
 
         if data.get('is_good') and (data.get('reward') or data.get('linked_habit')):

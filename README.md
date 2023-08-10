@@ -65,15 +65,9 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-6. #### Загрузка данных
-
-- Для загрузки начальных данных в БД:
-
-```
-python manage.py loaddata db.json
 ```
 
-7. #### Запустить dev-сервер:
+6. #### Запустить dev-сервер:
 
 ```
 python manage.py runserver
@@ -81,19 +75,19 @@ python manage.py runserver
 
 - Доступно по адресу http://localhost:8000
 
-8. #### Создание периодической задачи на проверку статуса платежей
+7. #### Создание периодической задачи на проверку статуса платежей
 
 ```
 python manage.py add_tasks
 ```
 
-9. #### Запуск Celery
+8. #### Запуск Celery
 
 ```
 celery -A config worker -l INFO -P eventlet
 ```
 
-10. #### Запуск celery-beat
+9. #### Запуск celery-beat
 
 ```
 celery -A config worker --loglevel=info

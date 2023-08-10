@@ -22,4 +22,3 @@ class Habit(models.Model):
 
     def __str__(self):
         return f'{self.user} будет {self.action} в {self.time} в {self.place}'
-
