@@ -4,8 +4,8 @@ from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
     class Meta:
         model = User
-        fields = ('id', 'email', 'avatar', 'login_tg',)
-
-
+        fields = ('id', 'email', 'password', 'avatar', 'login_tg',)

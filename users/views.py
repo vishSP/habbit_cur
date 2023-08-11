@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, AllowAny
 
@@ -9,6 +10,11 @@ class UserCreateAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+    def perform_create(self, serializer):
+        password = serializer.validated_data['password']
+        hashed_password = make_password(password)
+        serializer.save(password=hashed_password)
 
 
 class UserListAPIView(generics.ListAPIView):
