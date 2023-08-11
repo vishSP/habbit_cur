@@ -36,6 +36,7 @@ class User(AbstractUser):
     username = None
 
     email = models.EmailField(verbose_name='почта', unique=True)
+    password = models.CharField(verbose_name='пароль')
     avatar = models.ImageField(upload_to='users/', verbose_name='аватар', **NULLABLE)
     chat_id = models.CharField(max_length=100, verbose_name='чат ID телеграмм', **NULLABLE)
     login_tg = models.CharField(max_length=100, unique=True, verbose_name='логин телеграмм', **NULLABLE)
